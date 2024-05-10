@@ -1,7 +1,5 @@
 package tests.jenkins;
 
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -17,15 +15,14 @@ import settingsPerEnv.reportAutomation.services.UrlService;
 import com.codeborne.selenide.Configuration;
 
 public class CheckLogTests {
-    private LoginPage loginPage;
     private BuildPage buildPage;
     private ScreamingFrogPage screamingFrogPage;
     private Actions actions;
-    private final int THRESHOLD = 30;
+
     @BeforeTest
     public void setUp()  {
         Configuration.headless = true;
-        loginPage = new LoginPage();
+        LoginPage loginPage = new LoginPage();
         buildPage = new BuildPage();
         screamingFrogPage = new ScreamingFrogPage();
         actions = new Actions();
@@ -278,17 +275,18 @@ public class CheckLogTests {
         softAssert.assertEquals(preProdNZH1Duplicate,0,"duplicate H1 on preProd for "+UrlService.PREPOD_URL_NZ_CASINO);
         softAssert.assertEquals(preProdNZH2Missing,0,"missing H2 on preProd for "+UrlService.PREPOD_URL_NZ_CASINO);
 
-        softAssert.assertTrue(actions.areApproximatelyEqual(prodPages,preProdPages, THRESHOLD ),
+        int THRESHOLD = 30;
+        softAssert.assertTrue(actions.areApproximatelyEqual(prodPages,preProdPages, THRESHOLD),
                 "there is a big difference between amount of pages on prod and preProd for " + UrlService.PROD_URL_CASINO);
-        softAssert.assertTrue(actions.areApproximatelyEqual(prodKPages,preProdKPages, THRESHOLD ),
+        softAssert.assertTrue(actions.areApproximatelyEqual(prodKPages,preProdKPages, THRESHOLD),
                 "there is a big difference between amount of pages on prod and preProd for " + UrlService.PROD_URL_K_CASINO);
-        softAssert.assertTrue(actions.areApproximatelyEqual(prodAUSPages,preProdAUSPages, THRESHOLD ),
+        softAssert.assertTrue(actions.areApproximatelyEqual(prodAUSPages,preProdAUSPages, THRESHOLD),
                 "there is a big difference between amount of pages on prod and preProd for " + UrlService.PROD_URL_AUS_CASINO);
-        softAssert.assertTrue(actions.areApproximatelyEqual(prodCAPages,preProdCAPages, THRESHOLD ),
+        softAssert.assertTrue(actions.areApproximatelyEqual(prodCAPages,preProdCAPages, THRESHOLD),
                 "there is a big difference between amount of pages on prod and preProd for " + UrlService.PROD_URL_CA_CASINO);
-        softAssert.assertTrue(actions.areApproximatelyEqual(prodUKPages,preProdUKPages, THRESHOLD ),
+        softAssert.assertTrue(actions.areApproximatelyEqual(prodUKPages,preProdUKPages, THRESHOLD),
                 "there is a big difference between amount of pages on prod and preProd for " + UrlService.PROD_URL_UK_CASINO);
-        softAssert.assertTrue(actions.areApproximatelyEqual(prodNZPages,preProdNZPages, THRESHOLD ),
+        softAssert.assertTrue(actions.areApproximatelyEqual(prodNZPages,preProdNZPages, THRESHOLD),
                 "there is a big difference between amount of pages on prod and preProd for " + UrlService.PROD_URL_NZ_CASINO);
         softAssert.assertAll();
     }
