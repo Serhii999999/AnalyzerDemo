@@ -1,20 +1,17 @@
 package tests.jenkins;
 
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.Test;
-
-import java.io.File;
 
 public class MyFirstChromeTest {
 
     @Test
     public void startWebDriver(){
+
+        WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
